@@ -26,7 +26,7 @@
 
 | 天数 | 状态 | 主题 | 记录 |
 |---|---|---|---|
-| Day 01 | ⬜ | ROS2包结构与编译入口 | `progress/day01.md` |
+| Day 01 | ✅ | ROS2包结构与编译入口 | [学习记录](progress/day01.md) |
 | Day 02 | ⬜ | 类型、变量、函数和返回值 | `progress/day02.md` |
 | Day 03 | ⬜ | 声明、定义、命名空间和作用域 | `progress/day03.md` |
 | Day 04 | ⬜ | const、值传递和引用传递 | `progress/day04.md` |
