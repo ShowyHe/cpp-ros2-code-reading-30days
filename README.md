@@ -29,8 +29,8 @@
 | Day 01 | ✅ | ROS2包结构与编译入口 | [学习记录](progress/day01.md) |
 | Day 02 | ✅ | 类型、变量、函数和返回值 | [学习记录](progress/day02.md) |
 | Day 03 | ✅ | 声明、定义、命名空间和作用域 | [学习记录](progress/day03.md) |
-| Day 04 | 🟨 | const、值传递和引用传递 | `progress/day04.md` |
-| Day 05 | ⬜ | class、构造函数和成员变量 | `progress/day05.md` |
+| Day 04 | ✅ | const、值传递和引用传递 | [学习记录](progress/day04.md) |
+| Day 05 | 🟨 | class、构造函数和成员变量 | `progress/day05.md` |
 | Day 06 | ⬜ | 指针、对象和智能指针 | `progress/day06.md` |
 | Day 07 | ⬜ | 第一周复盘与闭卷测试 | `progress/day07.md` |
 | Day 08 | ⬜ | struct、vector 和 string | `progress/day08.md` |
