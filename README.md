@@ -32,8 +32,8 @@
 | Day 04 | ✅ | const、值传递和引用传递 | [学习记录](progress/day04.md) |
 | Day 05 | ✅ | class、构造函数和成员变量 | [学习记录](progress/day05.md) |
 | Day 06 | ✅ | 指针、对象和智能指针 | [学习记录](progress/day06.md) |
-| Day 07 | 🟨 | 第一周复盘与闭卷测试 | `progress/day07.md` |
-| Day 08 | ⬜ | struct、vector 和 string | `progress/day08.md` |
+| Day 07 | ✅ | 第一周复盘与闭卷测试 | [学习记录](progress/day07.md) |
+| Day 08 | 🟨 | struct、vector 和 string | `progress/day08.md` |
 | Day 09 | ⬜ | map、set 和 unordered_map | `progress/day09.md` |
 | Day 10 | ⬜ | 循环、迭代器和索引访问 | `progress/day10.md` |
 | Day 11 | ⬜ | enum、条件分支和提前返回 | `progress/day11.md` |
@@ -44,7 +44,7 @@
 | Day 16 | ⬜ | Service、Request 和 Response | `progress/day16.md` |
 | Day 17 | ⬜ | Publisher、Subscriber 和 Timer | `progress/day17.md` |
 | Day 18 | ⬜ | TF、Client、Future 和异步回调 | `progress/day18.md` |
-| Day 19 | ⬜ | Action Server 基本结构 | `progress/day19.md` |
+| Day 19 | ⬜ | Action Server基本结构 | `progress/day19.md` |
 | Day 20 | ⬜ | Action执行、反馈和结果 | `progress/day20.md` |
 | Day 21 | ⬜ | 第三周测试与ROS2小修改 | `progress/day21.md` |
 | Day 22 | ⬜ | thread、mutex 和 atomic | `progress/day22.md` |
