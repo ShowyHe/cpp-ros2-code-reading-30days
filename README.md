@@ -31,8 +31,8 @@
 | Day 03 | ✅ | 声明、定义、命名空间和作用域 | [学习记录](progress/day03.md) |
 | Day 04 | ✅ | const、值传递和引用传递 | [学习记录](progress/day04.md) |
 | Day 05 | ✅ | class、构造函数和成员变量 | [学习记录](progress/day05.md) |
-| Day 06 | 🟨 | 指针、对象和智能指针 | `progress/day06.md` |
-| Day 07 | ⬜ | 第一周复盘与闭卷测试 | `progress/day07.md` |
+| Day 06 | ✅ | 指针、对象和智能指针 | [学习记录](progress/day06.md) |
+| Day 07 | 🟨 | 第一周复盘与闭卷测试 | `progress/day07.md` |
 | Day 08 | ⬜ | struct、vector 和 string | `progress/day08.md` |
 | Day 09 | ⬜ | map、set 和 unordered_map | `progress/day09.md` |
 | Day 10 | ⬜ | 循环、迭代器和索引访问 | `progress/day10.md` |
