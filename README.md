@@ -34,8 +34,8 @@
 | Day 06 | ✅ | 指针、对象和智能指针 | [学习记录](progress/day06.md) |
 | Day 07 | ✅ | 第一周复盘与闭卷测试 | [学习记录](progress/day07.md) |
 | Day 08 | ✅ | struct、vector 和 string | [学习记录](progress/day08.md) |
-| Day 09 | 🟨 | map、set 和 unordered_map | `progress/day09.md` |
-| Day 10 | ⬜ | 循环、迭代器和索引访问 | `progress/day10.md` |
+| Day 09 | ✅ | map、set 和 unordered_map | [学习记录](progress/day09.md) |
+| Day 10 | 🟨 | 循环、迭代器和索引访问 | `progress/day10.md` |
 | Day 11 | ⬜ | enum、条件分支和提前返回 | `progress/day11.md` |
 | Day 12 | ⬜ | 文件读取、YAML 和错误处理 | `progress/day12.md` |
 | Day 13 | ⬜ | 跨文件调用链 | `progress/day13.md` |
