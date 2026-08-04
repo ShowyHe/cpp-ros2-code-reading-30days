@@ -37,8 +37,8 @@
 | Day 09 | ✅ | map、set 和 unordered_map | [学习记录](progress/day09.md) |
 | Day 10 | ✅ | 循环、迭代器和索引访问 | [学习记录](progress/day10.md) |
 | Day 11 | ✅ | enum、条件分支和提前返回 | [学习记录](progress/day11.md) |
-| Day 12 | 🟨 | 文件读取、YAML 和错误处理 | `progress/day12.md` |
-| Day 13 | ⬜ | 跨文件调用链 | `progress/day13.md` |
+| Day 12 | ✅ | 文件读取、YAML 和错误处理 | [学习记录](progress/day12.md) |
+| Day 13 | 🟨 | 跨文件调用链 | `progress/day13.md` |
 | Day 14 | ⬜ | 第二周小修改与复盘 | `progress/day14.md` |
 | Day 15 | ⬜ | Node、参数和日志 | `progress/day15.md` |
 | Day 16 | ⬜ | Service、Request 和 Response | `progress/day16.md` |
