@@ -31,10 +31,15 @@
 - Client创建并填写Request，再通过`async_send_request(request)`把请求交给ROS2发送。
 - Server回调参数`request`不是重新创建Client的局部变量，而是Server侧用于读取本次请求数据的参数。
 - Client侧`req`与Server侧`request`通常不是同一个C++变量或内存对象，但携带同一次请求的字段数据。
+- `req->map_name`与`request->map_name`之所以能对应，是因为Client和Server使用同一个`SwitchMap::Request`消息类型；ROS2传输的是字段数据，不是把Client的`req`指针直接跨进程交给Server。
+- 带函数体的`void handleReloadRequest(...){...}`是回调函数定义；其中`request`和`response`是形参变量，看到这两个参数不代表在函数签名处重新创建Request/Response业务数据。
+- 对一次Service调用，Server回调中的`response`由rclcpp/ROS2为本次调用准备并传入，回调负责填写字段；通常不需要Server自己`make_shared<Response>()`。
 - Server回调读取`request`、执行业务、填写`response`；`return;`只结束`void`回调，不是`return response`。
 - Response返回Client后，对应Future变为ready；`future.get()`取得Response。
 - `rclcpp::spin(node)`不是“spin某个Service”，而是让Executor持续处理这个Node拥有的ROS2回调事件。
+- `spin()`不是Service Server专属机制；Subscription、Timer、Client异步结果回调等Node事件同样需要Executor调度。
 - Node本身不等于Service Server；Node通过`create_service()`拥有一个或多个Service Server对象。
+- 每次Service调用都有本次调用对应的Request/Response数据对象；不能把回调形参理解成一个永久存在、被所有请求反复覆盖的全局Request/Response。
 
 ## 源码阅读批次
 
@@ -208,6 +213,26 @@ Client req
 → future.get()
 ```
 
+并进一步明确：
+
+```text
+Client侧 req
+→ 指向Client创建的Request对象
+→ 填写 req->map_name
+
+ROS2通信
+→ 传输Request字段数据
+
+Server回调 request
+→ 是Server回调形参shared_ptr
+→ 读取 request->map_name
+
+req 与 request
+→ 不是同一个C++变量
+→ 通常也不是同一个跨进程内存对象
+→ 但承载同一次请求对应的字段数据
+```
+
 ### 第二轮：74/100，未通过
 
 已掌握Request/Response和Node/Service Server关系，但仍混淆：
@@ -233,6 +258,14 @@ rclcpp::spin(node)
 → 让Executor持续处理HpaPlannerNode拥有的ROS2事件
 ```
 
+补充澄清：
+
+- `std::make_shared<HpaPlannerNode>()`只能证明创建了`HpaPlannerNode`对象并由shared_ptr管理，不能单独证明它“就是Server”。真正的Server证据是该Node构造函数中的`create_service()`。
+- `spin(node)`中的`node`指向`HpaPlannerNode`对象；spin的是整个Node，不是单独的`reload_service_`。
+- `spin()`本身不是Server专属；只要Node有需要Executor处理的回调事件，例如Subscription、Timer、异步Client结果回调，都属于同一执行模型。
+- Server回调签名中的`request`/`response`是函数形参；Request来自本次收到的请求数据，Response由rclcpp/ROS2为本次调用提供给回调填写。
+- 每次新的Service请求都会形成该次调用对应的Request/Response处理上下文，不应理解为所有请求共享同一个永久Request对象。
+
 ### 第三轮：100/100，通过
 
 五项全部正确：
@@ -248,18 +281,27 @@ rclcpp::spin(node)
 - Service类型、Service名字、Service Server对象、Client对象、回调函数的区别。
 - Request与Response的数据方向。
 - Client侧`req`与Server侧`request`的区别。
+- `req->map_name`和`request->map_name`使用同一消息字段定义，但属于发送端和接收端不同变量/对象上下文。
+- 回调函数定义中的`request`/`response`是形参，不等于在函数签名处重新创建Client的Request。
+- Server侧Response由本次Service调用上下文提供给回调填写，而不是靠回调返回C++对象。
 - `async_send_request()`与`future.get()`的区别。
 - `std::bind()`、`spin(node)`、Executor、ROS2通信层的职责边界。
 - 一个Node可以通过多个`create_service()`拥有多个Service Server。
-- `spin(node)`处理整个Node的ROS2回调事件，而不是只spin某一个Service。
+- `spin(node)`处理整个Node的ROS2回调事件，而不是只spin某一个Service，也不是Server专属机制。
+- 每次Service调用都有独立的Request/Response处理数据。
 
 ## 仍需注意
 
 - 不要把`srv::Type`写成Service名字。
 - 不要把Client侧Request变量与Server侧回调Request参数当成同一个C++变量。
+- 不要认为`req`指针本身直接跨进程变成Server侧`request`；真正跨通信边界的是Request字段数据。
+- 不要看到回调签名里的`request`/`response`就认为这里重新创建了Request/Response。
+- 不要默认Server回调需要自己`make_shared<Response>()`；当前Service回调模型中Response对象由调用上下文提供，回调负责填写。
 - 不要把`std::bind()`说成Request到达后“执行回调的人”。
 - 不要把Executor说成负责ROS2数据传输；Executor负责回调调度。
 - 不要把Node对象本身直接等同于Service Server对象。
+- 不要把`spin(node)`理解成只让Service Server工作；它让Executor持续处理这个Node的各种回调事件。
+- 不要把回调参数理解成所有Service调用共用的永久Request/Response对象。
 
 ## 当前状态
 
