@@ -67,8 +67,8 @@ README显示的当前日
 | Day 16 | ✅ | Service、Request 和 Response | [学习记录](progress/day16.md) |
 | Day 17 | ✅ | Publisher、Subscriber 和 Timer | [学习记录](progress/day17.md) |
 | Day 18 | ✅ | TF、Client、Future 和异步回调 | [学习记录](progress/day18.md) |
-| Day 19 | 🟨 | Action Server 基本结构 | `progress/day19.md` |
-| Day 20 | ⬜ | Action执行、反馈和结果 | `progress/day20.md` |
+| Day 19 | ✅ | Action Server 基本结构 | [学习记录](progress/day19.md) |
+| Day 20 | 🟨 | Action执行、反馈和结果 | `progress/day20.md` |
 | Day 21 | ⬜ | 第三周测试与ROS2小修改 | `progress/day21.md` |
 | Day 22 | ⬜ | thread、mutex 和 atomic | `progress/day22.md` |
 | Day 23 | ⬜ | 状态、重试、超时和取消 | `progress/day23.md` |
