@@ -73,8 +73,8 @@ README显示的当前日
 | Day 19 | ✅ | Action Server 基本结构 | [学习记录](progress/day19.md) |
 | Day 20 | ✅ | Action执行、反馈和结果 | [学习记录](progress/day20.md) |
 | Day 21 | ✅ | 第三周ROS2接口影响分析 | [学习记录](progress/day21.md) |
-| Day 22 | 🟨 | thread、mutex 和 atomic | `progress/day22.md` |
-| Day 23 | ⬜ | 状态、重试、超时和取消 | `progress/day23.md` |
+| Day 22 | ✅ | thread、mutex 和 atomic | [学习记录](progress/day22.md) |
+| Day 23 | 🟨 | 状态、重试、超时和取消 | `progress/day23.md` |
 | Day 24 | ⬜ | lambda捕获和shared_ptr生命周期 | `progress/day24.md` |
 | Day 25 | ⬜ | 大函数拆解方法 | `progress/day25.md` |
 | Day 26 | ⬜ | 编译错误、日志和问题定位 | `progress/day26.md` |
