@@ -1,8 +1,10 @@
 # 30天 C++ / ROS2 代码阅读训练
 
-以真实的 `multi_map_switcher / HPA` 功能包为代码基底，训练通用的 C++ 与 ROS2 工程代码阅读、修改和验证能力。
+以真实的 `multi_map_switcher / HPA` 功能包为代码基底，训练通用的 C++ 与 ROS2 工程代码阅读、问题定位、修改方案设计和风险审查能力。
 
 > HPA 是贯穿全程的真实代码教材，不是学习目标。遇到算法细节，优先确认输入、输出、调用关系和副作用，不在当前阶段展开算法推导。
+
+> 从 Day 21 起进一步明确：实际修改源码、编译、启动、部署和现场实测不作为每日通过的硬性条件；本仓库重点训练真实源码阅读、工程判断、最小修改方案和验证设计。若实际执行，则作为可选扩展记录真实证据。
 
 ## 新学习窗口启动要求
 
@@ -35,7 +37,8 @@ README显示的当前日
 - 判断变量类型、对象关系、指针所有权、复制行为和生命周期。
 - 跟踪函数调用链、控制流和数据流。
 - 阅读 Topic、Service、Action、Timer、TF、Future 和异步回调。
-- 借助 AI 完成小到中等修改，并独立审核、编译、测试和验证。
+- 根据真实源码定位问题、判断影响范围并设计最小修改方案。
+- 设计正常、失败、边界和回归验证矩阵，并区分“验证方案”和“真实运行证据”。
 - 面对陌生专业算法时，先看懂工程边界，再补充领域知识。
 
 ## 时间要求
@@ -69,16 +72,16 @@ README显示的当前日
 | Day 18 | ✅ | TF、Client、Future 和异步回调 | [学习记录](progress/day18.md) |
 | Day 19 | ✅ | Action Server 基本结构 | [学习记录](progress/day19.md) |
 | Day 20 | ✅ | Action执行、反馈和结果 | [学习记录](progress/day20.md) |
-| Day 21 | 🟨 | 第三周测试与ROS2小修改 | `progress/day21.md` |
-| Day 22 | ⬜ | thread、mutex 和 atomic | `progress/day22.md` |
+| Day 21 | ✅ | 第三周ROS2接口影响分析 | [学习记录](progress/day21.md) |
+| Day 22 | 🟨 | thread、mutex 和 atomic | `progress/day22.md` |
 | Day 23 | ⬜ | 状态、重试、超时和取消 | `progress/day23.md` |
 | Day 24 | ⬜ | lambda捕获和shared_ptr生命周期 | `progress/day24.md` |
 | Day 25 | ⬜ | 大函数拆解方法 | `progress/day25.md` |
 | Day 26 | ⬜ | 编译错误、日志和问题定位 | `progress/day26.md` |
-| Day 27 | ⬜ | HPA真实问题修改 | `progress/day27.md` |
-| Day 28 | ⬜ | 回归验证和第四周复盘 | `progress/day28.md` |
-| Day 29 | ⬜ | 陌生ROS2 C++包阅读考试 | `progress/day29.md` |
-| Day 30 | ⬜ | 陌生包独立修改考试 | `progress/day30.md` |
+| Day 27 | ⬜ | 真实问题定位与最小修改设计 | `progress/day27.md` |
+| Day 28 | ⬜ | 回归风险与测试矩阵设计 | `progress/day28.md` |
+| Day 29 | ⬜ | 陌生ROS2 C++包独立阅读 | `progress/day29.md` |
+| Day 30 | ⬜ | 陌生代码综合审查 | `progress/day30.md` |
 
 状态统一使用：`⬜ 未开始`、`🟨 进行中`、`✅ 完成`、`🔁 需要重学`。
 
@@ -92,8 +95,8 @@ README显示的当前日
 
 ```text
 day-01: analyze ROS2 package structure
-day-14: add MapSplitter input validation
-day-30: complete unfamiliar package modification
+day-21: analyze ROS2 interface impact
+day-30: review unfamiliar ROS2 change
 ```
 
 ## AI使用顺序
@@ -102,9 +105,17 @@ day-30: complete unfamiliar package modification
 自己先读并写出判断
 → 让AI检查判断
 → 回到原代码核实
-→ 审核修改diff
-→ 自己编译和实测
-→ 记录验证证据
+→ 设计或审核最小修改方案
+→ 设计验证矩阵
+→ 明确哪些结论已有源码证据、哪些仍需真实运行证据
 ```
 
-禁止直接让 AI 代替阅读、直接生成整个结论，或在未检查 diff 和测试结果时接受修改。
+如果当天明确选择做真实实操，再追加：
+
+```text
+检查diff
+→ 编译/启动/实测
+→ 记录真实证据
+```
+
+禁止直接让 AI 代替阅读、直接生成整个项目结论，或把尚未实际执行的验证方案写成“已经验证通过”。
